@@ -21,8 +21,14 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: Clear npm cache (Fixes possible ESLint version conflicts)
+        run: npm cache clean --force
+
       - name: Install Dependencies
         run: npm install
+
+      - name: Verify ESLint Version
+        run: npx eslint -v
 
       - name: Run Linting
         run: npm run lint
